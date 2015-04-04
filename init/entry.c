@@ -4,28 +4,15 @@
     > Mail: morainchen135@gmail.com 
     > Created Time: 2015年04月02日 星期四 11时39分32秒
  ************************************************************************/
-#include "../include/types.h"
+
+#include "../include/console.h"
+#include "debug.h"
 
 int kern_entry()
 {
-	uint8_t *input = (uint8_t *)0xB8000;
-	uint8_t color = (0<<4) | (15 & 0x0F);
-	*input++ = 'H'; *input++ = color;
-	*input++ = 'e'; *input++ = color;
-	*input++ = 'l'; *input++ = color;
-	*input++ = 'l'; *input++ = color;
-	*input++ = 'o'; *input++ = color;
-	*input++ = ','; *input++ = color;
-	*input++ = ' '; *input++ = color;
-	*input++ = 'O'; *input++ = color;
-	*input++ = 'S'; *input++ = color;
-	*input++ = ' '; *input++ = color;
-	*input++ = 'K'; *input++ = color;
-	*input++ = 'e'; *input++ = color;
-	*input++ = 'r'; *input++ = color;
-	*input++ = 'n'; *input++ = color;
-	*input++ = 'e'; *input++ = color;
-	*input++ = 'l'; *input++ = color;
-	*input++ = '!'; *input++ = color;
+	init_debug();
+	console_clear();
+	//console_write_color("Hello , OS Kernel!\n" , rc_black , rc_green);
+	panic("test");
 	return 0;
 }
