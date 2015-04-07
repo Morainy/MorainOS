@@ -1,5 +1,5 @@
 /*************************************************************************
-    > File Name: include_console.h
+    > File Name: console.h
     > Author: Morain
     > Mail: morainchen135@gmail.com 
     > Created Time: 2015年04月03日 星期五 10时17分55秒
@@ -20,13 +20,15 @@ enum real_color
 	rc_red = 4,
 	rc_magenta = 5,
 	rc_brown = 6,
-	rc_light_grey ,
-	rc_dark_grey,
-	rc_light_cyan,
-	rc_light_red,
-	rc_light_magenta,
-	rc_light_brown,
-	rc_white,
+	rc_light_grey = 7,
+	rc_dark_grey = 8,
+	rc_light_blue = 9,
+	rc_light_green = 10,
+	rc_light_cyan = 11,
+	rc_light_red = 12,
+	rc_light_magenta = 13,
+	rc_light_brown  = 14, 	// yellow
+	rc_white = 15
 }real_color_t;
 
 //清屏
@@ -51,8 +53,4 @@ void console_write_hex(uint32_t n , real_color_t back , real_color_t fore);
 void console_write_dec(uint32_t n , real_color_t back , real_color_t fore);
 
 #endif
-
-
-
-
 

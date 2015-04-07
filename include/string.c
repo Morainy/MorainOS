@@ -7,66 +7,76 @@
 
 #include "string.h"
 
-inline void memcpy(uint8_t * dest , uint8_t * src , uint32_t len)
+inline void memcpy(uint8_t *dest, const uint8_t *src, uint32_t len)
 {
-	while(len > 0)
-	{
+	for (; len != 0; len--) {
 		*dest++ = *src++;
-		len--;
 	}
 }
 
-inline void memset(void * dest , uint8_t val , uint32_t len)
+inline void memset(void *dest, uint8_t val, uint32_t len)
 {
-	int i;
-	uint8_t * dst = (uint8_t *)dest;
-	for(i =0 ; i < len ; i++)
-	{
-		dst[i] = val;
+	uint8_t *dst = (uint8_t *)dest;
+
+	for ( ; len != 0; len--) {
+		*dst++ = val;
 	}
 }
 
-inline void bzero(void * dest , uint32_t len)
+inline void bzero(void *dest, uint32_t len)
 {
-	memset(dest , 0  , len);
+	memset(dest, 0, len);
 }
 
-inline int strcmp(const char * str1 , const char * str2)
+inline int strcmp(const char *str1, const char *str2)
 {
-	char * p1 = str1;
-	char * p2 = str2;
-	int ret;
-	while(*p1 !='\0' && *p2 != '\0' && *p1 == *p1)
-	{
-		p1++;
-		p2++;
+	while (*str1 && *str2 && (*str1++ == *str2++))
+	      ;
+
+	if (*str1 == '\0' && *str2 == '\0') {
+	      return 0;
 	}
-	ret = *p1 - *p2;
-	return ret;
+
+	if (*str1 == '\0') {
+	      return -1;
+	}
+	
+	return 1;
 }
 
-inline char * strcat(char * dest , const char * src)
+inline char *strcpy(char *dest, const char *src)
 {
-	char * pdes = dest;
-	char * psrc = src;
-	while( *pdes != '\0')
-	{
-		pdes++;
+	char *tmp = dest;
+
+	while (*src) {
+	      *dest++ = *src++;
 	}
-	while(*psrc != '\0')
-	{
-		*pdes++ = *psrc++;
+
+	*dest = '\0';
+	
+	return tmp;
+}
+
+inline char *strcat(char *dest, const char *src)
+{
+	char *cp = dest;
+
+	while (*cp) {
+	      cp++;
 	}
-	*pdes = '\0';
+
+	while ((*cp++ = *src++))
+	      ;
+
 	return dest;
 }
-inline int strlen(const char * src)
+
+inline int strlen(const char *src)
 {
-	int count = 0;
-	char * psrc = src;
-	while(*psrc != '\0')
-	{
-		count++;
-	}
-	return count;
+	const char *eos = src;
+
+        while (*eos++)
+	      ;
+	        
+	return (eos - src - 1);
 }
