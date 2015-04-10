@@ -13,6 +13,7 @@
 #include "timer.h"
 #include "pmm.h"
 #include "vmm.h"
+#include "heap.h"
 
 void kern_init();
 
@@ -72,10 +73,11 @@ void kern_init()
 	init_gdt();
 	init_idt();
 
+
 	console_clear();
 	printk_color(rc_black , rc_green , "Hello , OS kernel!\n\n");
 
-	init_timer(200);
+	//init_timer(200);
 
 	printk("kernel in memory start:0x%08X\n",kern_start);
 	printk("kernel in memory end:  0x%08X\n", kern_end);
@@ -84,6 +86,7 @@ void kern_init()
 	show_memory_map();
 	init_pmm();
 
+	init_heap();
 	printk_color(rc_black, rc_red, "\nThe Count of Physical Memory Page is: %u\n\n", phy_page_count);
 
     uint32_t allc_addr = NULL;
@@ -96,6 +99,7 @@ void kern_init()
     printk_color(rc_black, rc_light_brown, "Alloc Physical Addr: 0x%08X\n", allc_addr);
     allc_addr = pmm_alloc_page();
     printk_color(rc_black, rc_light_brown, "Alloc Physical Addr: 0x%08X\n", allc_addr);
-
+	
+	test_heap();
 }
 
