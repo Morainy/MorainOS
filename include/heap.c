@@ -169,7 +169,8 @@ void glue_chunk(header_t * chunk)
 		}
 		chunk->next = chunk->next->next;
 	}
-	if(chunk->prev && chunk->prev->allocated == 0){
+	if(chunk->prev && chunk->prev->allocated == 0)
+	{
 		chunk->prev->length = chunk->prev->length + chunk->length;
 		chunk->prev->next = chunk->next;
 		if(chunk->next){
@@ -179,7 +180,8 @@ void glue_chunk(header_t * chunk)
 	}
 
 	//假如该内存后面没有链表内存块则直接释放
-	if(chunk->next == 0){
+	if(chunk->next == 0)
+	{
 		free_chunk(chunk);
 	}
 }

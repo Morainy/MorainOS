@@ -9,13 +9,15 @@
 #include "debug.h"
 #include "common.h"
 #include "idt.h"
+#include "schedule.h"
 
 
 
 void timer_callback(pt_regs * regs)
 {
-	static uint32_t tick = 0;
-	printk_color(rc_black , rc_red , "Tick:%d\n" , tick++);
+	//static uint32_t tick = 0;
+	//printk_color(rc_black , rc_red , "Tick:%d\n" , tick++);
+	schedule();
 }
 
 void init_timer(uint32_t frequency)

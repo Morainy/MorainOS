@@ -21,7 +21,10 @@ multiboot_t * glb_mboot_ptr;
 
 extern uint32_t phy_page_count;
 
-char kern_stack[STACK_SIZE];
+char kern_stack[STACK_SIZE] __attribute__ ((aligned(16)));
+
+// 内核栈的栈顶
+uint32_t kern_stack_top;
 
 __attribute__((section(".init.data"))) pgd_t * pgd_tmp = (pgd_t *)0x1000;
 __attribute__((section(".init.data"))) pgd_t * pte_low = (pgd_t *)0x2000;
